@@ -247,10 +247,11 @@ check expr expected =
       pure (Core.Int int, actual')
     Syntax.IfThenElse cond then_ else_ -> do
       (cond', _) <- check cond $ Type.Var "Bool"
-      (then_', ty) <- check then_ expected
-      (else_', ty') <- check else_ ty
+      (then_', _) <- check then_ expected
+      (else_', _) <- check else_ expected
 
-      pure (Core.IfThenElse cond' then_' else_', ty')
+      expected' <- walk expected
+      pure (Core.IfThenElse cond' then_' else_', expected')
 
 infer :: Monad m => Spanned Syntax.Expr -> CheckT m (Core.Expr, Type)
 infer expr =
