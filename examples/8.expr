@@ -1,0 +1,3 @@
+with f : forall a. a -> (a -> Int) -> Int in
+with isEmpty : String -> Bool in
+f "hello" isEmpty

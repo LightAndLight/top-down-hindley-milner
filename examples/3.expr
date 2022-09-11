@@ -1,0 +1,2 @@
+with b : (xx -> yy) -> zz in
+b (\a -> a)
